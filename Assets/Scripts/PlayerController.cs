@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
-        
+        if(SwitchVCam.isAim == true){ 
         RaycastHit hit;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
         BulletController bulletController = bullet.GetComponent<BulletController>();
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
             bulletController.hit = false;
+        }
         }
     }
 

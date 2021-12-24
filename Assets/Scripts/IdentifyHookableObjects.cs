@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class IdentifyHookableObjects : MonoBehaviour
 {
+    /*
+     
     [HideInInspector] public Vector3 attachPoint;
 
     [Space]
@@ -22,5 +24,5 @@ public class IdentifyHookableObjects : MonoBehaviour
     void Update()
     {
         
-    }
+    }*/
 }

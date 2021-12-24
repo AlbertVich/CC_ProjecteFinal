@@ -16,6 +16,7 @@ public class SwitchVCam : MonoBehaviour
     private Canvas aimCanvas;
     [SerializeField]
     private float rotationSpeed = 10f;
+    public bool isAim;
 
 
     private CinemachineVirtualCamera virutalCamera;
@@ -45,6 +46,7 @@ public class SwitchVCam : MonoBehaviour
 
     private void StartAim()
     {
+        isAim = true;
         virutalCamera.Priority += priorityBoostAmount;
         aimCanvas.enabled = true;
         thirdPersonCanvas.enabled = false;
