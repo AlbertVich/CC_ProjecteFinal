@@ -41,16 +41,20 @@ public class SwitchVCam : MonoBehaviour
 
     private void StartAim()
     {
-        Global.ISaim = true;
-        virutalCamera.Priority += priorityBoostAmount;
-        aimCanvas.enabled = true;
-        thirdPersonCanvas.enabled = false;
-        Debug.Log("Aim");
+        if (Global.witchAvatarIsOn == 1)
+        {
+            Global.ISaim = true;
+            virutalCamera.Priority += priorityBoostAmount;
+            aimCanvas.enabled = true;
+            thirdPersonCanvas.enabled = false;
+            Debug.Log("Aim");
+        }
 
     }
 
     private void CancelAim()
     {
+        Global.ISaim = false;
         virutalCamera.Priority -= priorityBoostAmount;
         aimCanvas.enabled = false;
         thirdPersonCanvas.enabled = true;
