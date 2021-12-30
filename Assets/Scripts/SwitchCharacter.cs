@@ -26,9 +26,9 @@ public class SwitchCharacter : MonoBehaviour
 
     private void OnEnable()
     {
-        
-        changeAction.performed += _ => ChangeCharacter();
 
+            changeAction.performed += _ => ChangeCharacter();
+        
     }
 
 
@@ -48,22 +48,27 @@ public class SwitchCharacter : MonoBehaviour
 
     // Update is called once per frame
 
-        public void ChangeCharacter(){
-         switch (Global.witchAvatarIsOn){
+    public void ChangeCharacter()
+    {
+        if (Global.groundedPlayer == true)
+        {
+            switch (Global.witchAvatarIsOn)
+            {
                 case 1:
-                Global.witchAvatarIsOn = 2;
+                    Global.witchAvatarIsOn = 2;
 
-                    character1.gameObject.SetActive (false);
-                    character2.gameObject.SetActive (true);
-                break;
+                    character1.gameObject.SetActive(false);
+                    character2.gameObject.SetActive(true);
+                    break;
 
                 case 2:
-                Global.witchAvatarIsOn = 1;
+                    Global.witchAvatarIsOn = 1;
 
-                    character1.gameObject.SetActive (true);
-                   character2.gameObject.SetActive (false);
-                break;
+                    character1.gameObject.SetActive(true);
+                    character2.gameObject.SetActive(false);
+                    break;
             }
         }
+    }
     
 }
