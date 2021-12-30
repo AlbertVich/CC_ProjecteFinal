@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     private Transform bulletParent;
     [SerializeField]
     private float bulletHitMissDistance = 25f;
-
+    [SerializeField]
+    private GameObject Player1;
+    [SerializeField]
+    private GameObject Player2;
 
 
 
@@ -37,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private InputAction shootAction;
-
+    private InputAction changeAction;
 
 
 
@@ -49,16 +52,16 @@ public class PlayerController : MonoBehaviour
         moveAction = playerInput.actions["Move"];
         jumpAction = playerInput.actions["Jump"];
         shootAction = playerInput.actions["Shoot"];
+        changeAction = playerInput.actions["Change"];
 
 
         //Bloquejar corsor
-     //   Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
     private void OnEnable()
     {
-        
         shootAction.performed += _ => ShootGun();
 
     }
@@ -72,7 +75,6 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
-        if(SwitchVCam.isAim == true){ 
         RaycastHit hit;
         GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
         BulletController bulletController = bullet.GetComponent<BulletController>();
@@ -85,7 +87,6 @@ public class PlayerController : MonoBehaviour
         {
             bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
             bulletController.hit = false;
-        }
         }
     }
 
@@ -114,9 +115,11 @@ public class PlayerController : MonoBehaviour
 
 
         //Rotacio camera direcio
-        
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
+        //Cambiar personatge
+
+        //changeAction
     }
 }

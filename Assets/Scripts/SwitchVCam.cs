@@ -14,28 +14,22 @@ public class SwitchVCam : MonoBehaviour
     private Canvas thirdPersonCanvas;
     [SerializeField]
     private Canvas aimCanvas;
-    [SerializeField]
-    private float rotationSpeed = 10f;
-    public bool isAim;
+
 
 
     private CinemachineVirtualCamera virutalCamera;
     private InputAction aimAction;
-    private Transform cameraTransform;
 
     private void Awake()
     {
         virutalCamera = GetComponent<CinemachineVirtualCamera>();
         aimAction = playerInput.actions["Aim"];
-        cameraTransform = Camera.main.transform;
     }
 
     private void OnEnable()
     {
-        if(gameObject.name == "Player1"){
-            aimAction.performed += _ => StartAim();
-            aimAction.canceled += _ => CancelAim();
-        }
+        aimAction.performed += _ => StartAim();
+        aimAction.canceled += _ => CancelAim();
     }
 
     private void OnDisable()
@@ -46,13 +40,10 @@ public class SwitchVCam : MonoBehaviour
 
     private void StartAim()
     {
-        isAim = true;
         virutalCamera.Priority += priorityBoostAmount;
         aimCanvas.enabled = true;
         thirdPersonCanvas.enabled = false;
         Debug.Log("Aim");
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
     }
 
