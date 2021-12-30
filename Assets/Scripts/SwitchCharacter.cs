@@ -14,7 +14,7 @@ public class SwitchCharacter : MonoBehaviour
 
     private bool groundedPlayer;
 
-    int witchAvatarIsOn = 1;
+
 
 
     private void Awake()
@@ -49,16 +49,16 @@ public class SwitchCharacter : MonoBehaviour
     // Update is called once per frame
 
         public void ChangeCharacter(){
-         switch (witchAvatarIsOn){
+         switch (Global.witchAvatarIsOn){
                 case 1:
-                    witchAvatarIsOn = 2;
+                Global.witchAvatarIsOn = 2;
 
                     character1.gameObject.SetActive (false);
                     character2.gameObject.SetActive (true);
                 break;
 
                 case 2:
-                    witchAvatarIsOn = 1;
+                Global.witchAvatarIsOn = 1;
 
                     character1.gameObject.SetActive (true);
                    character2.gameObject.SetActive (false);

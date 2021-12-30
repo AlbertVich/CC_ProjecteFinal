@@ -14,6 +14,7 @@ public class SwitchVCam : MonoBehaviour
     private Canvas thirdPersonCanvas;
     [SerializeField]
     private Canvas aimCanvas;
+    
 
 
 
@@ -40,6 +41,7 @@ public class SwitchVCam : MonoBehaviour
 
     private void StartAim()
     {
+        Global.ISaim = true;
         virutalCamera.Priority += priorityBoostAmount;
         aimCanvas.enabled = true;
         thirdPersonCanvas.enabled = false;
