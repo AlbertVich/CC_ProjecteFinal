@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
 
     private void ShootGun()
     {
-        if ( Global.ISaim == true)
+        if ( Global.ISaim == true && Global.witchAvatarIsOn == 1)
         {
             RaycastHit hit;
             GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);

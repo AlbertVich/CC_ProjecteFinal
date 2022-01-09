@@ -29,11 +29,11 @@ public class SwitchVCam : MonoBehaviour
 
     private void OnEnable()
     {
-        if (Global.witchAvatarIsOn == 1)
-        {
+
+
             aimAction.performed += _ => StartAim();
             aimAction.canceled += _ => CancelAim();
-        }
+
     }
 
     private void OnDisable()
@@ -44,13 +44,10 @@ public class SwitchVCam : MonoBehaviour
 
     private void StartAim()
     {
-        if (Global.witchAvatarIsOn == 1)
-        {
             Global.ISaim = true;
             virutalCamera.Priority += priorityBoostAmount;
             aimCanvas.enabled = true;
             thirdPersonCanvas.enabled = false;
-        }
 
     }
 
