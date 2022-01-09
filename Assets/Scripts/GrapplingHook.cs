@@ -75,8 +75,8 @@ public class GrapplingHook : MonoBehaviour
     {
         if (grapplingHook.parent == handPos)
         {
-            grapplingHook.localPosition = Vector3.zero;
-            grapplingHook.localRotation = Quaternion.Euler(new Vector3(90, 0, 0));
+           // grapplingHook.localPosition = Vector3.zero;
+           // grapplingHook.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
         }
         if (isGrappling)
@@ -88,8 +88,10 @@ public class GrapplingHook : MonoBehaviour
 
                 controllerChar.enabled = false;
                 playerBody.position = Vector3.Lerp(playerBody.position, hookPoint - offset, hookSpeed * Time.deltaTime);
-                if (Vector3.Distance(grapplingHook.position, hookPoint - offset) < 0.5f)
+                if (Vector3.Distance(playerBody.position, hookPoint - offset) < 0.5f)
                 {
+                    Debug.Log("STOP!");
+
                     controllerChar.enabled = true;
                     isGrappling = false;
                     grapplingHook.SetParent(handPos);

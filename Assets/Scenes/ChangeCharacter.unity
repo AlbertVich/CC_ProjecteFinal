@@ -272,15 +272,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.313833
+      value: -0.41319484
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.932337
+      value: 3.852337
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.714462
+      value: -1.0848858
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -750,7 +750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 461998152}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.73, y: 1.9659272, z: 8.93}
+  m_LocalPosition: {x: -1.68, y: 2.88, z: 2.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1617401113}
@@ -797,7 +797,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0
-  m_Center: {x: 4.317028, y: -1.005927, z: -9.399576}
+  m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!114 &461998156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1362,7 +1362,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.027921118, y: -0.0061062328, z: 0.00017056252, w: 0.99959147}
-  m_LocalPosition: {x: 6.0658026, y: 1.8975127, z: -4.1000614}
+  m_LocalPosition: {x: -0.6612258, y: 3.8175123, z: -1.4704852}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1450,7 +1450,7 @@ MonoBehaviour:
   controllerChar: {fileID: 461998155}
   grapplingHook: {fileID: 1436608510}
   handPos: {fileID: 967189475}
-  playerBody: {fileID: 1023317417}
+  playerBody: {fileID: 461998153}
   grappleLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1506,15 +1506,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.0658026
+      value: -0.6612258
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8975127
+      value: 3.8175123
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.1000614
+      value: -1.4704852
       objectReference: {fileID: 0}
     - target: {fileID: 1345613068168170335, guid: 284e6c73e29a7e3479d263ae97eadf96, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1708,7 +1708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023317413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.317028, y: -1.005927, z: -9.399576}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.67, z: 1}
   m_Children:
   - {fileID: 217288103}
@@ -2150,7 +2150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617401109}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.317028, y: -1.0059273, z: -9.399576}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1089209458}
