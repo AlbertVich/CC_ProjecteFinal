@@ -75,7 +75,7 @@ public class GrapplingHook : MonoBehaviour
     {
         if (grapplingHook.parent == handPos)
         {
-           // grapplingHook.localPosition = Vector3.zero;
+           grapplingHook.localPosition = Vector3.zero;
            // grapplingHook.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
         }
@@ -102,22 +102,24 @@ public class GrapplingHook : MonoBehaviour
 
     private void ShootHook()
     {
+        if (Global.witchAvatarIsOn == 2 && Global.ISaim == true) {
 
-        if (isShooting || isGrappling) return;
+            if (isShooting || isGrappling) return;
 
-        isShooting = true;
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            isShooting = true;
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out hit, maxGrappleDistance, grappleLayer))
-        {
-            hookPoint = hit.point;
-            isGrappling = true;
-            grapplingHook.parent = null;
-            grapplingHook.LookAt(hookPoint);
-            Debug.Log("HIT!");
+            if (Physics.Raycast(ray, out hit, maxGrappleDistance, grappleLayer))
+            {
+                hookPoint = hit.point;
+                isGrappling = true;
+                grapplingHook.parent = null;
+                grapplingHook.LookAt(hookPoint);
+                Debug.Log("HIT!");
+            }
+
+            isShooting = false;
         }
-
-        isShooting = false;
     }
 }
