@@ -11,7 +11,7 @@ public class GrapplingHook : MonoBehaviour
     private InputAction grappleAction;
 
 
-
+    
     [SerializeField]
     private CharacterController controllerChar;
     [SerializeField]
@@ -29,43 +29,30 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField]
     private Vector3 offset;
 
-
-    private bool isShooting, isGrappling;
+    private bool isShootingGrap, isGrappling;
     private Vector3 hookPoint;
 
     private void Awake()
     {
-
         grappleAction = playerInput.actions["Grappling"];
-        Debug.Log("Awake!");
-
-
     }
 
     private void OnEnable()
     {
-
         grappleAction.performed += _ => ShootHook();
-        Debug.Log("Enable!");
-
-
     }
 
 
     private void OnDisable()
     {
         grappleAction.performed -= _ => ShootHook();
-        Debug.Log("Disable!");
-
     }
-
-
 
 
 
     private void Start()
     {
-        isShooting = false;
+        isShootingGrap = false;
         isGrappling = false;
         Debug.Log("Start!");
 
@@ -79,18 +66,17 @@ public class GrapplingHook : MonoBehaviour
            // grapplingHook.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
         }
+
         if (isGrappling)
         {
             grapplingHook.position = Vector3.Lerp(grapplingHook.position, hookPoint, hookSpeed * Time.deltaTime);
             if(Vector3.Distance (grapplingHook.position, hookPoint) < 0.5f)
             {
-                Debug.Log("MOVE!");
 
                 controllerChar.enabled = false;
                 playerBody.position = Vector3.Lerp(playerBody.position, hookPoint - offset, hookSpeed * Time.deltaTime);
                 if (Vector3.Distance(playerBody.position, hookPoint - offset) < 0.5f)
                 {
-                    Debug.Log("STOP!");
 
                     controllerChar.enabled = true;
                     isGrappling = false;
@@ -104,9 +90,10 @@ public class GrapplingHook : MonoBehaviour
     {
         if (Global.witchAvatarIsOn == 2 && Global.ISaim == true) {
 
-            if (isShooting || isGrappling) return;
 
-            isShooting = true;
+            if (isShootingGrap || isGrappling) return;
+
+            isShootingGrap = true;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -119,7 +106,7 @@ public class GrapplingHook : MonoBehaviour
                 Debug.Log("HIT!");
             }
 
-            isShooting = false;
+            isShootingGrap = false;
         }
     }
 }

@@ -14,7 +14,9 @@ public class SwitchVCam : MonoBehaviour
     private Canvas thirdPersonCanvas;
     [SerializeField]
     private Canvas aimCanvas;
-    
+    [SerializeField]
+    private GameObject grappling;
+
 
 
 
@@ -48,6 +50,10 @@ public class SwitchVCam : MonoBehaviour
             virutalCamera.Priority += priorityBoostAmount;
             aimCanvas.enabled = true;
             thirdPersonCanvas.enabled = false;
+        if(Global.witchAvatarIsOn == 2 && Global.ISaim == true)
+        {
+            grappling.gameObject.SetActive(true);
+        }
 
     }
 
@@ -57,5 +63,10 @@ public class SwitchVCam : MonoBehaviour
         virutalCamera.Priority -= priorityBoostAmount;
         aimCanvas.enabled = false;
         thirdPersonCanvas.enabled = true;
+
+        if (Global.witchAvatarIsOn == 2 && Global.ISaim == false)
+        {
+            grappling.gameObject.SetActive(false);
+        }
     }
 }
