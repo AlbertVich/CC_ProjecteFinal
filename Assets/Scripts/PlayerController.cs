@@ -28,13 +28,14 @@ public class PlayerController : MonoBehaviour
     private GameObject Player1;
     [SerializeField]
     private GameObject Player2;
+    [SerializeField]
+    private bool saltfunciona = false;
 
 
 
     private CharacterController controller;
     private PlayerInput playerInput;
     private Vector3 playerVelocity;
-    //private bool groundedPlayer;
     private Transform cameraTransform;
 
     private InputAction moveAction;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         shootAction.performed += _ => ShootGun();
+        jumpAction.performed += _ => JumpUp();
 
     }
 
@@ -70,12 +72,14 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         shootAction.performed -= _ => ShootGun();
+        jumpAction.performed -= _ => JumpUp();
     }
 
 
     private void ShootGun()
     {
-        if ( Global.ISaim == true && Global.witchAvatarIsOn == 1)
+
+        if (Global.ISaim == true && Global.witchAvatarIsOn == 1)
         {
             RaycastHit hit;
             GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
@@ -108,10 +112,8 @@ public class PlayerController : MonoBehaviour
 
 
         // Changes the height position of the player..
-        if (jumpAction.triggered && Global.groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
+
+
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -121,8 +123,38 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        //Cambiar personatge
 
-        //changeAction
+
+        if (Global.totalJump == 2)
+        {
+            Global.totalJump = 0;
+
+        }
+        if (Global.totalJump <= 2 && Global.witchAvatarIsOn == 2)
+        {
+            Global.totalJump = 0;
+        }
+
+
+
     }
+
+    private void JumpUp()
+    {
+        if (Global.totalJump == 1)
+        {
+
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            Global.totalJump++;
+            Debug.Log("Salts Despres1: " + Global.totalJump);
+
+        }
+
+        if (Global.groundedPlayer == true && Global.totalJump == 0)
+        {
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            Global.totalJump++;
+        }
+    }
+
 }
