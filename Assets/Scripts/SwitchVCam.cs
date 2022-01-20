@@ -64,7 +64,7 @@ public class SwitchVCam : MonoBehaviour
         aimCanvas.enabled = false;
         thirdPersonCanvas.enabled = true;
 
-        if (Global.witchAvatarIsOn == 2 && Global.ISaim == false)
+        if (Global.witchAvatarIsOn == 2 && Global.ISaim == false && Global.ISgrappling == false)
         {
             grappling.gameObject.SetActive(false);
         }

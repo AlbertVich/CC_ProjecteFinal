@@ -120,6 +120,7 @@ public class PlayerController : MonoBehaviour
 
 
         //Rotacio camera direcio
+        //
         Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Global.totalJump == 1)
         {
-
+            playerVelocity.y = 0;
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
             Global.totalJump++;
             Debug.Log("Salts Despres1: " + Global.totalJump);

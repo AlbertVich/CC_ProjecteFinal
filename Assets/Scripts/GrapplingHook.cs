@@ -11,7 +11,10 @@ public class GrapplingHook : MonoBehaviour
     private InputAction grappleAction;
 
 
-    
+    [SerializeField]
+    private LineRenderer lineRenderer;
+    [SerializeField]
+    private Transform grapplingHookEndPoint;
     [SerializeField]
     private CharacterController controllerChar;
     [SerializeField]
@@ -29,7 +32,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField]
     private Vector3 offset;
 
-    private bool isShootingGrap, isGrappling;
+    private bool isShootingGrap;
     private Vector3 hookPoint;
 
     private void Awake()
@@ -53,9 +56,9 @@ public class GrapplingHook : MonoBehaviour
     private void Start()
     {
         isShootingGrap = false;
-        isGrappling = false;
+        Global.ISgrappling = false;
         Debug.Log("Start!");
-
+        lineRenderer.enabled = false;
     }
 
     private void Update()
@@ -63,11 +66,11 @@ public class GrapplingHook : MonoBehaviour
         if (grapplingHook.parent == handPos)
         {
            grapplingHook.localPosition = Vector3.zero;
-           // grapplingHook.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
-
+            grapplingHook.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            grapplingHook.localScale = new Vector3(1, 1, 1);
         }
 
-        if (isGrappling)
+        if (Global.ISgrappling)
         {
             grapplingHook.position = Vector3.Lerp(grapplingHook.position, hookPoint, hookSpeed * Time.deltaTime);
             if(Vector3.Distance (grapplingHook.position, hookPoint) < 0.5f)
@@ -79,19 +82,30 @@ public class GrapplingHook : MonoBehaviour
                 {
 
                     controllerChar.enabled = true;
-                    isGrappling = false;
+                    Global.ISgrappling = false;
                     grapplingHook.SetParent(handPos);
+                    lineRenderer.enabled = false;
                 }
             }
         }
     }
 
+    private void LateUpdate()
+    {
+        if (lineRenderer.enabled)
+        {
+            lineRenderer.SetPosition(0, grapplingHookEndPoint.position);
+            lineRenderer.SetPosition(1, handPos.position);
+
+        }
+    }
+
     private void ShootHook()
     {
-        if (Global.witchAvatarIsOn == 2 && Global.ISaim == true) {
+        if (Global.witchAvatarIsOn == 2 ) {
 
 
-            if (isShootingGrap || isGrappling) return;
+            if (isShootingGrap || Global.ISgrappling) return;
 
             isShootingGrap = true;
             RaycastHit hit;
@@ -100,10 +114,11 @@ public class GrapplingHook : MonoBehaviour
             if (Physics.Raycast(ray, out hit, maxGrappleDistance, grappleLayer))
             {
                 hookPoint = hit.point;
-                isGrappling = true;
+                Global.ISgrappling = true;
                 grapplingHook.parent = null;
                 grapplingHook.LookAt(hookPoint);
                 Debug.Log("HIT!");
+                lineRenderer.enabled = true;
             }
 
             isShootingGrap = false;
