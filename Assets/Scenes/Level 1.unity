@@ -1269,7 +1269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622964447336672755, guid: 3aa2674b128b49b46a0ed0b5ee306550, type: 3}
       propertyPath: m_ZDamping
-      value: 10
+      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 3622964447336672755, guid: 3aa2674b128b49b46a0ed0b5ee306550, type: 3}
       propertyPath: m_SoftZoneWidth
@@ -1997,7 +1997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5893609534565601718, guid: e8f227857728a7e4ca46e39917976285, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.969703
+      value: 11.96854
       objectReference: {fileID: 0}
     - target: {fileID: 5893609534565601718, guid: e8f227857728a7e4ca46e39917976285, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2005,7 +2005,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5893609534565601718, guid: e8f227857728a7e4ca46e39917976285, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.274783
+      value: -4.2747974
       objectReference: {fileID: 0}
     - target: {fileID: 5893609534565601718, guid: e8f227857728a7e4ca46e39917976285, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8018,7 +8018,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1036096853918731521, guid: b82a015180b615b4e95df9ebc4cba447, type: 3}
       propertyPath: playerSpeed
-      value: 6
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036096853918731521, guid: b82a015180b615b4e95df9ebc4cba447, type: 3}
+      propertyPath: gravityValue
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 1036096853918731521, guid: b82a015180b615b4e95df9ebc4cba447, type: 3}
       propertyPath: cameraTransform
