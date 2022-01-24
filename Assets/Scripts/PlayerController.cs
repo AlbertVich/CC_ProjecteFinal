@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
     [SerializeField]
-    private float rotationSpeed = 5f;
+    private float rotationSpeed = 10f;
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]

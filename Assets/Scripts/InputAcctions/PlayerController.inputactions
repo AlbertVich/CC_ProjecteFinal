@@ -264,7 +264,7 @@
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad",
+                    "groups": "Gamepad;Keyboard",
                     "action": "Grappling",
                     "isComposite": false,
                     "isPartOfComposite": false
