@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
 
 
@@ -15,7 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float gravityValue = -9.81f;
     [SerializeField]
-    private float rotationSpeed = 10f;
+    private float rotationSpeed = 100f;
     [SerializeField]
     private GameObject bulletPrefab;
     [SerializeField]
@@ -42,8 +43,10 @@ public class PlayerController : MonoBehaviour
     private InputAction jumpAction;
     private InputAction shootAction;
     private InputAction changeAction;
+    private InputAction realoadActio;
 
-
+    private int bulletscount;
+    private bool loading;
 
     private void Awake()
     {
@@ -54,6 +57,10 @@ public class PlayerController : MonoBehaviour
         jumpAction = playerInput.actions["Jump"];
         shootAction = playerInput.actions["Shoot"];
         changeAction = playerInput.actions["Change"];
+        realoadActio = playerInput.actions["Reload"];
+
+        bulletscount = 0;
+        loading = false;
 
 
         //Bloquejar corsor
@@ -65,6 +72,7 @@ public class PlayerController : MonoBehaviour
     {
         shootAction.performed += _ => ShootGun();
         jumpAction.performed += _ => JumpUp();
+        realoadActio.performed += _ => Reload();
 
     }
 
@@ -73,17 +81,23 @@ public class PlayerController : MonoBehaviour
     {
         shootAction.performed -= _ => ShootGun();
         jumpAction.performed -= _ => JumpUp();
+        realoadActio.performed -= _ => Reload();
+
     }
 
 
     private void ShootGun()
     {
+        
 
-        if (Global.ISaim == true && Global.witchAvatarIsOn == 1)
+        if (Global.ISaim == true && Global.witchAvatarIsOn == 1 && loading == false)
         {
+            
+
             RaycastHit hit;
             GameObject bullet = GameObject.Instantiate(bulletPrefab, barrelTransform.position, Quaternion.identity, bulletParent);
             BulletController bulletController = bullet.GetComponent<BulletController>();
+                      
             if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, Mathf.Infinity))
             {
                 bulletController.target = hit.point;
@@ -94,7 +108,15 @@ public class PlayerController : MonoBehaviour
                 bulletController.target = cameraTransform.position + cameraTransform.forward * bulletHitMissDistance;
                 bulletController.hit = false;
             }
+            bulletscount ++;
+            Debug.Log(bulletscount);
+            if (bulletscount == 7){
+                loading = true;
+                StartCoroutine(ReloadWait());
+            }
+        
         }
+
     }
 
     void Update()
@@ -108,21 +130,23 @@ public class PlayerController : MonoBehaviour
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * cameraTransform.right.normalized + move.z * cameraTransform.forward.normalized;
+        move.y = 0;
         controller.Move(move * Time.deltaTime * playerSpeed);
 
 
         // Changes the height position of the player..
 
-
-
-        playerVelocity.y += gravityValue * Time.deltaTime;
+        playerVelocity.y += gravityValue * Time.deltaTime;       
         controller.Move(playerVelocity * Time.deltaTime);
 
 
         //Rotacio camera direcio
-        //
-        Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        //comprobar que no hi ha input de moviment
+        if(input != Vector2.zero || Global.ISaim == true){
+            Quaternion targetRotation = Quaternion.Euler(0, cameraTransform.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
+        
 
 
 
@@ -138,6 +162,12 @@ public class PlayerController : MonoBehaviour
 
 
 
+    }
+
+
+    private void Reload(){
+        loading = true;
+        StartCoroutine(ReloadWait());
     }
 
     private void JumpUp()
@@ -157,5 +187,16 @@ public class PlayerController : MonoBehaviour
             Global.totalJump++;
         }
     }
+
+
+     IEnumerator ReloadWait()
+    {
+        Debug.Log("PreReaload");
+        yield return new WaitForSeconds(3);
+        Debug.Log("PosReaload");
+        bulletscount=0;
+        loading = false;
+    }
+
 
 }

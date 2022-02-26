@@ -9,5 +9,6 @@ public static class Global
     public static bool groundedPlayer;
     public static bool ISgrappling = false;
     public static int totalJump = 0;
+    public static GameObject PickedObject;
 
 }

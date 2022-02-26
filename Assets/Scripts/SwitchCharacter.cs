@@ -63,7 +63,13 @@ public class SwitchCharacter : MonoBehaviour
 
                 case 2:
                     Global.witchAvatarIsOn = 1;
-
+                    //DROP OBJECT POSSIBLE CANVIAR A FUNCIO EN EL PICKUPOBEJCT
+                    Global.PickedObject.GetComponent<PickableObject>().isPickable = true;
+                    Global.PickedObject.transform.SetParent(null);
+                    Global.PickedObject.GetComponent<Rigidbody>().useGravity = true;
+                    Global.PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+                    Global.PickedObject = null;
+                    //
                     character1.gameObject.SetActive(true);
                     character2.gameObject.SetActive(false);
                     break;
