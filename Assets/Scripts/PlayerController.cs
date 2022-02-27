@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     private InputAction realoadActio;
 
     private int bulletscount;
-    private bool loading;
+
 
     private void Awake()
     {
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
         realoadActio = playerInput.actions["Reload"];
 
         bulletscount = 0;
-        loading = false;
+        Global.reloading = false;
 
 
         //Bloquejar corsor
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         
 
-        if (Global.ISaim == true && Global.witchAvatarIsOn == 1 && loading == false)
+        if (Global.ISaim == true && Global.witchAvatarIsOn == 1 && Global.reloading == false)
         {
             
 
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             bulletscount ++;
             Debug.Log(bulletscount);
             if (bulletscount == 7){
-                loading = true;
+                Global.reloading = true;
                 StartCoroutine(ReloadWait());
             }
         
@@ -165,8 +165,8 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void Reload(){
-        loading = true;
+    public void Reload(){
+        Global.reloading = true;
         StartCoroutine(ReloadWait());
     }
 
@@ -191,11 +191,12 @@ public class PlayerController : MonoBehaviour
 
      IEnumerator ReloadWait()
     {
+        Debug.Log("Reloading: " + Global.reloading);
         Debug.Log("PreReaload");
         yield return new WaitForSeconds(3);
         Debug.Log("PosReaload");
         bulletscount=0;
-        loading = false;
+        Global.reloading = false;
     }
 
 

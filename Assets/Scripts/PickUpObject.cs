@@ -42,28 +42,33 @@ public class PickUpObject : MonoBehaviour
 
     void StartGrab()
     {
-        if(ObjectToPickUp != null && ObjectToPickUp.GetComponent<PickableObject>().isPickable == true && Global.PickedObject == null)
+        pickUpObj();
+    }
+
+    public void pickUpObj()
+    {
+        if (ObjectToPickUp != null && ObjectToPickUp.GetComponent<PickableObject>().isPickable == true && Global.PickedObject == null)
         {
 
-                Global.PickedObject = ObjectToPickUp;
-                Global.PickedObject.GetComponent<PickableObject>().isPickable = false;
-                Global.PickedObject.transform.SetParent(interactionZone);
-                Global.PickedObject.transform.position = interactionZone.position;
-                Global.PickedObject.GetComponent<Rigidbody>().useGravity = false;
-                Global.PickedObject.GetComponent<Rigidbody>().isKinematic = true;
-          
+            Global.PickedObject = ObjectToPickUp;
+            Global.PickedObject.GetComponent<PickableObject>().isPickable = false;
+            Global.PickedObject.transform.SetParent(interactionZone);
+            Global.PickedObject.transform.position = interactionZone.position;
+            Global.PickedObject.GetComponent<Rigidbody>().useGravity = false;
+            Global.PickedObject.GetComponent<Rigidbody>().isKinematic = true;
+
         }
 
         else if (Global.PickedObject != null)
         {
 
-                Global.PickedObject.GetComponent<PickableObject>().isPickable = true;
-                Global.PickedObject.transform.SetParent(null);
-                Global.PickedObject.GetComponent<Rigidbody>().useGravity = true;
-                Global.PickedObject.GetComponent<Rigidbody>().isKinematic = false;
-                Global.PickedObject = null;
+            Global.PickedObject.GetComponent<PickableObject>().isPickable = true;
+            Global.PickedObject.transform.SetParent(null);
+            Global.PickedObject.GetComponent<Rigidbody>().useGravity = true;
+            Global.PickedObject.GetComponent<Rigidbody>().isKinematic = false;
+            Global.PickedObject = null;
 
-            
+
         }
     }
 }

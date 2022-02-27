@@ -67,7 +67,7 @@
                     "id": "a2add607-d156-42d2-8bc8-e0c46a5502e4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "Reload",
@@ -247,7 +247,7 @@
                 {
                     "name": "",
                     "id": "1aa23a6a-e6b9-4492-9ed1-fc430c246a91",
-                    "path": "<Gamepad>/rightShoulder",
+                    "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -281,7 +281,7 @@
                     "name": "",
                     "id": "b6493be2-c3f4-4896-a39c-5035ad7c341b",
                     "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Grab",

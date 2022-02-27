@@ -14,6 +14,8 @@ public class SwitchCharacter : MonoBehaviour
 
     private bool groundedPlayer;
 
+    public GameObject ScrpPick;
+
 
 
 
@@ -27,8 +29,8 @@ public class SwitchCharacter : MonoBehaviour
     private void OnEnable()
     {
 
-            changeAction.performed += _ => ChangeCharacter();
-        
+        changeAction.performed += _ => ChangeCharacter();
+
     }
 
 
@@ -63,13 +65,12 @@ public class SwitchCharacter : MonoBehaviour
 
                 case 2:
                     Global.witchAvatarIsOn = 1;
-                    //DROP OBJECT POSSIBLE CANVIAR A FUNCIO EN EL PICKUPOBEJCT
-                    Global.PickedObject.GetComponent<PickableObject>().isPickable = true;
-                    Global.PickedObject.transform.SetParent(null);
-                    Global.PickedObject.GetComponent<Rigidbody>().useGravity = true;
-                    Global.PickedObject.GetComponent<Rigidbody>().isKinematic = false;
-                    Global.PickedObject = null;
-                    //
+
+
+                    //DROP OBJECT POSSIBLE CANVIAR A FUNCIO EN EL PICKUPOBEJC
+                    //pickUpObj();
+
+
                     character1.gameObject.SetActive(true);
                     character2.gameObject.SetActive(false);
                     break;

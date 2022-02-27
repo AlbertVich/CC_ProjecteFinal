@@ -10,5 +10,6 @@ public static class Global
     public static bool ISgrappling = false;
     public static int totalJump = 0;
     public static GameObject PickedObject;
+    public static bool reloading;
 
 }
